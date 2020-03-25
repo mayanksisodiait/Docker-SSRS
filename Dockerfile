@@ -23,7 +23,6 @@ COPY start.ps1 /
 COPY configureSSRS2017.ps1 /
 COPY sqlstart.ps1 /
 COPY newadmin.ps1 /
-COPY SQLServerReportingServices.exe /
 WORKDIR /
 
 RUN    Invoke-WebRequest -Uri $env:exe -OutFile SQLServerReportingServices.exe ; \
