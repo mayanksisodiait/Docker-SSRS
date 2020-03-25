@@ -5,7 +5,6 @@ LABEL maintainer "Perry Skountrianos"
 # SQL Server 2016 vNext:
 ENV exe "https://go.microsoft.com/fwlink/?linkid=835677"
 ENV box "https://go.microsoft.com/fwlink/?linkid=835679"
-ENV exe1 "https://download.microsoft.com/download/E/6/4/E6477A2A-9B58-40F7-8AD6-62BB8491EA78/SQLServerReportingServices.exe"
 
 ENV sa_password="_" \
     attach_dbs="[]" \
@@ -25,7 +24,7 @@ COPY sqlstart.ps1 /
 COPY newadmin.ps1 /
 WORKDIR /
 
-RUN    Invoke-WebRequest -Uri $env:exe -OutFile SQLServerReportingServices.exe ; \
+RUN    Invoke-WebRequest -Uri "https://download.microsoft.com/download/E/6/4/E6477A2A-9B58-40F7-8AD6-62BB8491EA78/SQLServerReportingServices.exe" -OutFile SQLServerReportingServices.exe ; \
 Start-Process -Wait -FilePath .\SQLServerReportingServices.exe -ArgumentList "/quiet", "/norestart", "/IAcceptLicenseTerms", "/Edition=$env:SSRS_edition" -PassThru -Verbose
 
 RUN  Invoke-WebRequest -Uri $env:box -OutFile SQL.box ; \
